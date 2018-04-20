@@ -58,11 +58,11 @@ LOCAL_AAPT_FLAGS := \
 
 LOCAL_SDK_VERSION := current
 LOCAL_MIN_SDK_VERSION := 23
-LOCAL_PACKAGE_NAME := Trebuchet
+LOCAL_PACKAGE_NAME := crDroidHome2
 LOCAL_PRIVILEGED_MODULE := true
 LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3
 
-LOCAL_AAPT_FLAGS += --rename-manifest-package org.lineageos.trebuchet
+LOCAL_AAPT_FLAGS += --rename-manifest-package com.crdroid.home2
 
 LOCAL_FULL_LIBS_MANIFEST_FILES := $(LOCAL_PATH)/AndroidManifest-common.xml
 
@@ -113,11 +113,11 @@ LOCAL_AAPT_FLAGS := \
 
 LOCAL_SDK_VERSION := current
 LOCAL_MIN_SDK_VERSION := 21
-LOCAL_PACKAGE_NAME := TrebuchetGo
+LOCAL_PACKAGE_NAME := crDroidHomeGo2
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3 Launcher3Go Trebuchet
+LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3 Launcher3Go crDroidHome2
 
-LOCAL_AAPT_FLAGS += --rename-manifest-package org.lineageos.trebuchet
+LOCAL_AAPT_FLAGS += --rename-manifest-package com.crdroid.home2
 
 LOCAL_FULL_LIBS_MANIFEST_FILES := \
     $(LOCAL_PATH)/AndroidManifest.xml \
@@ -141,7 +141,7 @@ LOCAL_PROTOC_FLAGS := --proto_path=$(LOCAL_PATH)/protos/ --proto_path=$(LOCAL_PA
 LOCAL_PROTO_JAVA_OUTPUT_PARAMS := enum_style=java
 
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE := trebuchet_proto_lib
+LOCAL_MODULE := crdroidhome2_proto_lib
 LOCAL_IS_HOST_MODULE := true
 LOCAL_STATIC_JAVA_LIBRARIES := host-libprotobuf-java-nano
 

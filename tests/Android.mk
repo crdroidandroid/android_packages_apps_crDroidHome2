@@ -25,10 +25,10 @@ LOCAL_FULL_LIBS_MANIFEST_FILES := $(LOCAL_PATH)/AndroidManifest-common.xml
 LOCAL_SDK_VERSION := current
 LOCAL_MIN_SDK_VERSION := 21
 
-LOCAL_PACKAGE_NAME := TrebuchetTests
+LOCAL_PACKAGE_NAME := crDroidHome2Tests
 
-LOCAL_AAPT_FLAGS += --rename-manifest-package org.lineageos.trebuchet.tests
+LOCAL_AAPT_FLAGS += --rename-manifest-package com.crdroid.home2.tests
 
-LOCAL_INSTRUMENTATION_FOR := Trebuchet
+LOCAL_INSTRUMENTATION_FOR := crDroidHome2
 
 include $(BUILD_PACKAGE)

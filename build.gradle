@@ -31,13 +31,13 @@ android {
         }
     }
 
-    flavorDimensions "trebuchet"
+    flavorDimensions "crdroidhome2"
 
     productFlavors {
-        trebuchet {
-            dimension "trebuchet"
-            applicationId 'org.lineageos.trebuchet'
-            testApplicationId 'org.lineageos.trebuchet.tests'
+        crdroidhome2 {
+            dimension "crdroidhome2"
+            applicationId 'com.crdroid.home2'
+            testApplicationId 'com.crdroid.home2.tests'
         }
 
         l3go {
@@ -62,7 +62,7 @@ android {
             manifest.srcFile "tests/AndroidManifest-common.xml"
         }
 
-        trebuchet {
+        crdroidhome2 {
             res.srcDirs = ['res']
             java.srcDirs = ['src_flags']
             manifest.srcFile 'AndroidManifest.xml'
