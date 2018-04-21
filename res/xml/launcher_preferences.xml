@@ -96,6 +96,7 @@
 
         <Preference
             android:key="pref_icon_pack"
+            android:icon="@drawable/ic_settings_icons"
             android:title="@string/icon_pack_title" />
 
         <ListPreference

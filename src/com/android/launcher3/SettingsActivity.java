@@ -278,7 +278,6 @@ public class SettingsActivity extends Activity {
             ApplicationInfo info = null;
             String iconPack = mPrefs.getString(KEY_ICON_PACK, mDefaultIconPack);
             String summary = getString(R.string.icon_pack_system);
-            Drawable icon = getResources().getDrawable(android.R.mipmap.sym_def_app_icon);
 
             if (!mIconsHandler.isDefaultIconPack()) {
                 try {
@@ -287,12 +286,10 @@ public class SettingsActivity extends Activity {
                 }
                 if (info != null) {
                     summary = mPackageManager.getApplicationLabel(info).toString();
-                    icon = mPackageManager.getApplicationIcon(info);
                 }
             }
 
             mIconPackPref.setSummary(summary);
-            mIconPackPref.setIcon(icon);
         }
 
         private void triggerRestart() {
