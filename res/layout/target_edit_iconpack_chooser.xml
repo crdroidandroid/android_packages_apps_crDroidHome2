@@ -29,13 +29,15 @@
     <ImageView
         android:id="@+id/icon"
         android:layout_width="@android:dimen/app_icon_size"
-        android:layout_height="@android:dimen/app_icon_size" />
+        android:layout_height="@android:dimen/app_icon_size"
+        android:layout_gravity="center_vertical" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_gravity="center_vertical"
         android:paddingEnd="8dp"
         android:paddingStart="8dp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
@@ -46,7 +48,9 @@
         android:id="@+id/radio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:clickable="false"
         android:duplicateParentState="true"
-        android:focusable="false" />
+        android:focusable="false"
+        android:paddingEnd="8dip" />
 </LinearLayout>

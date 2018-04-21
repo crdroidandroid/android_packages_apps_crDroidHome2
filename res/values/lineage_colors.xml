@@ -15,7 +15,7 @@
      limitations under the License.
 -->
 <resources>
-    <color name="colorAccent">#167c80</color>
+    <color name="colorAccent">@*android:color/accent_device_default_light</color>
 
     <color name="icon_settings_background">#333333</color>
     <color name="icon_settings_text">#f5f5f5</color>
@@ -30,5 +30,5 @@
     <color name="settings_sheet_background">#f5f5f5</color>
     <color name="settings_statusbar_dim">#bdbdbd</color>
     <color name="settings_quick_icons">#424242</color>
-    <color name="settings_icons">?android:attr/textColorPrimary</color>
+    <color name="settings_icons">?android:attr/colorControlNormal</color>
 </resources>
