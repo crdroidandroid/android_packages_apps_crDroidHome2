@@ -41,6 +41,8 @@ import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.om.IOverlayManager;
+import android.content.om.OverlayInfo;
 import android.content.pm.ActivityInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.PackageManager;
@@ -55,6 +57,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
+import android.os.ServiceManager;
 import android.os.StrictMode;
 import android.os.SystemClock;
 import android.os.Trace;
@@ -372,6 +375,13 @@ public class Launcher extends BaseActivity
     private LauncherTab mLauncherTab;
     private boolean mFeedIntegrationEnabled;
 
+    private boolean mDarkMode = false;
+
+    private static final String[] DARK_OVERLAYS = {
+            "com.android.system.theme.dark",
+            "com.android.system.theme.black",
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (DEBUG_STRICT_MODE) {
@@ -400,7 +410,7 @@ public class Launcher extends BaseActivity
 
         WallpaperColorInfo wallpaperColorInfo = WallpaperColorInfo.getInstance(this);
         wallpaperColorInfo.setOnThemeChangeListener(this);
-        overrideTheme(wallpaperColorInfo.isDark(), wallpaperColorInfo.supportsDarkText());
+        updateTheme();
 
         super.onCreate(savedInstanceState);
 
@@ -520,19 +530,14 @@ public class Launcher extends BaseActivity
         }
 
         tryAndUpdatePredictedApps();
+
+        updateTheme();
     }
 
     @Override
     public void onThemeChanged() {
         recreate();
-    }
-
-    protected void overrideTheme(boolean isDark, boolean supportsDarkText) {
-        if (isDark) {
-            setTheme(R.style.LauncherThemeDark);
-        } else if (supportsDarkText) {
-            setTheme(R.style.LauncherThemeDarkText);
-        }
+        updateTheme();
     }
 
     @Override
@@ -4215,6 +4220,35 @@ public class Launcher extends BaseActivity
                     mLauncherTab.getClient().onDestroy();
                 }
             }
+            updateTheme();
+        }
+    }
+
+    private void updateTheme() {
+        boolean isDark = false;
+
+        for (String overlay: DARK_OVERLAYS) {
+            try {
+                IOverlayManager mOverlayManager = IOverlayManager.Stub.asInterface(
+                       ServiceManager.getService(Context.OVERLAY_SERVICE));
+                OverlayInfo themeInfo = mOverlayManager.getOverlayInfo(overlay,
+                       UserHandle.myUserId());
+                if (themeInfo != null && themeInfo.isEnabled())
+                    isDark = true;
+            } catch (Exception e) {
+                Log.w(TAG, "Can't find theme for " + overlay, e);
+            }
+        }
+        mDarkMode = isDark;
+
+        if (mDarkMode) {
+            setTheme(R.style.LauncherThemeDark);
+        } else {
+            setTheme(R.style.LauncherTheme);
+        }
+
+        if (WallpaperColorInfo.getInstance(this).supportsDarkText()) {
+            setTheme(R.style.LauncherThemeDarkText);
         }
     }
 }
