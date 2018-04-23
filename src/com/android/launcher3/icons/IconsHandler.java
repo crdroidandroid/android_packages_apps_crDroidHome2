@@ -500,12 +500,12 @@ public class IconsHandler {
 
     public void showDialog(Activity activity) {
         loadAvailableIconPacks();
-        final IconAdapter adapter = new IconAdapter(mContext, mIconPacks);
+        final IconAdapter adapter = new IconAdapter(activity, mIconPacks);
         AlertDialog.Builder builder = new AlertDialog.Builder(activity)
                 .setTitle(R.string.icon_pack_title)
                 .setAdapter(adapter, (dialog, position) -> {
                     String selected = adapter.getItem(position);
-                    String current = Utilities.getPrefs(mContext.getApplicationContext())
+                    String current = Utilities.getPrefs(activity.getApplicationContext())
                             .getString(SettingsActivity.KEY_ICON_PACK, mDefaultIconPack);
                     if (!selected.equals(current)) {
                         switchIconPacks(selected);
